@@ -2,8 +2,15 @@ import doctest
 
 
 class Car:
-    def __init__(self, maximum_speed: float, current_speed: float): #maximum_speed - максимальная скорость, current_speed - текущая скорсть
+    def __init__(self, maximum_speed: float, current_speed: float):
+        """
+        Конструктор класса Car.
 
+        :param maximum_speed: Максимальная скорость машины.
+        :param current_speed: Текущая скорость машины.
+        :raises TypeError: Если maximum_speed или current_speed не являются числами (int или float).
+        :raises ValueError: Если current_speed больше maximum_speed или current_speed отрицательная.
+        """
         if not isinstance(maximum_speed, (int, float)):
             raise TypeError ("Максимальная скокрость должна быть типа int или float")
         if not isinstance(current_speed, (int, float)):
@@ -16,34 +23,40 @@ class Car:
         self.maximum_speed = maximum_speed #максимальная скорость
         self.current_speed = current_speed # текущая скоркость
 
-    def car_standing(self) -> bool: #проверяет,стоит ли машина
+    def car_standing(self) -> bool:
         """
-            Примеры:
-                car = Car(150, 0)
-                car.car_standing()
+        Проверяет, стоит ли машина.
+
+        :return: True, если машина стоит, иначе False.
         """
 
-    def new_speed(self, increased_speed: float): # увеличение скорости
+    def new_speed(self, increased_speed: float):
+        """
+        Увеличивает скорость машины на указанное значение.
 
+        :param increased_speed: Дополнительная скорость, которую нужно добавить.
+        :raises TypeError: Если increased_speed не является числом (int или float).
+        :raises ValueError: Если новая скорость превышает максимальную или отрицательная.
+        """
         if not isinstance(increased_speed, (int, float)):
             raise TypeError # добавленная скорость быть типа int или float
         if increased_speed < 0:
             raise ValueError # добавленная скокрость не может быть отрицательной
         if self.current_speed + increased_speed > self.maximum_speed:
             raise ValueError #новая текущая скорсть не может превыщать максимальную
-        """
-        Примеры: 
-            car = Car(150, 0)
-            car.new_speed(125)
-        """
+
         self.current_speed += increased_speed
 
 
 class Сomputer:
     def __init__(self, manufacturer: str, ram: int):
         """
-        manufacturer: Производитель компьютера.
-        ram : Объем оперативной памяти .
+        Конструктор класса Computer.
+
+        :param manufacturer: Производитель компьютера.
+        :param ram: Объем оперативной памяти.
+        :raises TypeError: Если manufacturer не является строкой или ram не является числом (int).
+        :raises ValueError: Если ram отрицательная.
         """
         if not isinstance(manufacturer, (str)):
             raise TypeError ("Произвожитель комьютера должн быть типа str")
@@ -67,8 +80,14 @@ class Сomputer:
 
 
 class Timer:
-    def __init__(self, initial_minutes: int):  # initial_minutes - начальное количество минут
+    def __init__(self, initial_minutes: int):
+        """
+        Конструктор класса Timer.
 
+        :param initial_minutes: Начальное количество минут.
+        :raises TypeError: Если initial_minutes не является числом (int).
+        :raises ValueError: Если initial_minutes отрицательное.
+        """
         if not isinstance(initial_minutes, int):
             raise TypeError("Начальное количество минут должно быть целым числом")
         if initial_minutes < 0:
@@ -76,19 +95,20 @@ class Timer:
 
         self.remaining_minutes = initial_minutes  # оставшееся количество минут
 
-    def is_time_up(self) -> bool:  # проверяет, закончилось ли отведенное время
+    def is_time_up(self) -> bool:
         """
-        Примеры:
-            timer = Timer(0)
-            timer.is_time_up()
+        Проверяет, закончилось ли отведенное время.
+
+        :return: True, если время закончилось, иначе False.
         """
 
-
-    def add_minutes(self, additional_minutes: int) -> None:  # добавляет дополнительные минуты к таймеру
+    def add_minutes(self, additional_minutes: int) -> None:
         """
-        Примеры:
-            timer = Timer(5)
-            timer.add_minutes(10)
+        Добавляет дополнительные минуты к таймеру.
+
+        :param additional_minutes: Дополнительное количество минут.
+        :raises TypeError: Если additional_minutes не является числом (int).
+        :raises ValueError: Если additional_minutes отрицательное.
         """
         if not isinstance(additional_minutes, int):
             raise TypeError("Дополнительное кол-во минут должно быть целым числом")
@@ -97,11 +117,13 @@ class Timer:
 
         self.remaining_minutes += additional_minutes
 
-    def reset_timer(self, new_minutes: int) -> None:  # сбрасывает таймер на новое кол-во минут
+    def reset_timer(self, new_minutes: int) -> None:
         """
-        Примеры:
-            timer = Timer(10)
-            timer.reset_timer(15)
+        Сбрасывает таймер на новое количество минут.
+
+        :param new_minutes: Новое количество минут.
+        :raises TypeError: Если new_minutes не является числом (int).
+        :raises ValueError: Если new_minutes отрицательное.
         """
         if not isinstance(new_minutes, int):
             raise TypeError("Новое количество минут должно быть целым числом")
@@ -115,5 +137,4 @@ class Timer:
 
 if __name__ == "__main__":
     doctest.testmod()
-    # TODO работоспособность экземпляров класса проверить с помощью doctest
-    pass
+    # TODO работоспособность экземпляров класса проверить
